@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://62n0ujheg5ni"]
+
+[ext_resource type="Script" path="res://encyclopedia.gd" id="1_4528d"]
+[ext_resource type="Texture2D" uid="uid://btufevun4oa81" path="res://bg.png" id="1_mu0o0"]
+[ext_resource type="Texture2D" uid="uid://60vcrvyi61gq" path="res://cards/m00.jpg" id="3_eya4l"]
+[ext_resource type="Texture2D" uid="uid://b3usp8q5wyxmb" path="res://cards/s01.jpg" id="4_hix0p"]
+[ext_resource type="Texture2D" uid="uid://db4cb5m6qt686" path="res://cards/w01.jpg" id="5_lt77c"]
+[ext_resource type="Texture2D" uid="uid://3yowocmvfj0v" path="res://cards/c01.jpg" id="6_q7h83"]
+[ext_resource type="Texture2D" uid="uid://7pm4iv3sw50t" path="res://cards/p01.jpg" id="7_01oll"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0usc7"]
+
+[node name="Encyclopedia" type="Node2D"]
+script = ExtResource("1_4528d")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 960.0
+texture = ExtResource("1_mu0o0")
+
+[node name="go_home" type="Button" parent="."]
+offset_left = 465.0
+offset_top = 532.0
+offset_right = 863.0
+offset_bottom = 678.0
+text = "Return Home"
+
+[node name="Major" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_0usc7")
+offset_left = 579.0
+offset_top = 125.0
+offset_right = 754.0
+offset_bottom = 425.0
+text = "MAJOR ARCANA
+"
+icon = ExtResource("3_eya4l")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Cups" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_0usc7")
+offset_left = 969.0
+offset_top = 117.0
+offset_right = 1144.0
+offset_bottom = 417.0
+text = "SUIT OF CUPS
+"
+icon = ExtResource("6_q7h83")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Swords" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_0usc7")
+offset_left = 966.0
+offset_top = 521.0
+offset_right = 1141.0
+offset_bottom = 821.0
+text = "SUIT OF SWORDS"
+icon = ExtResource("4_hix0p")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Wands" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_0usc7")
+offset_left = 165.0
+offset_top = 120.0
+offset_right = 340.0
+offset_bottom = 420.0
+text = "SUIT OF WANDS
+"
+icon = ExtResource("5_lt77c")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Pentacles" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_0usc7")
+offset_left = 171.0
+offset_top = 525.0
+offset_right = 346.0
+offset_bottom = 825.0
+text = "SUIT OF PENTACLES
+"
+icon = ExtResource("7_01oll")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="go_home" to="." method="_on_go_home_pressed"]
+[connection signal="pressed" from="Major" to="." method="_on_suit_pressed" binds= ["Major"]]
+[connection signal="pressed" from="Cups" to="." method="_on_suit_pressed" binds= ["Cups"]]
+[connection signal="pressed" from="Swords" to="." method="_on_suit_pressed" binds= ["Swords"]]
+[connection signal="pressed" from="Wands" to="." method="_on_suit_pressed" binds= ["Wands"]]
+[connection signal="pressed" from="Pentacles" to="." method="_on_suit_pressed" binds= ["Pentacles"]]

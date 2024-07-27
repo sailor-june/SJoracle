@@ -1,0 +1,59 @@
+[gd_scene load_steps=17 format=3 uid="uid://dp1666g3bo5jk"]
+
+[ext_resource type="Texture2D" uid="uid://btufevun4oa81" path="res://bg.png" id="1_g3lu5"]
+[ext_resource type="Script" path="res://Major_view.gd" id="2_v4rwn"]
+[ext_resource type="Texture2D" uid="uid://3yowocmvfj0v" path="res://cards/c01.jpg" id="3_wo3t4"]
+[ext_resource type="Texture2D" uid="uid://dltdcodp3hgss" path="res://cards/c02.jpg" id="4_c3gp4"]
+[ext_resource type="Texture2D" uid="uid://cll2h2a4rrut0" path="res://cards/c03.jpg" id="5_c7hyw"]
+[ext_resource type="Texture2D" uid="uid://dp0s8rqsj1qa6" path="res://cards/c04.jpg" id="6_citsx"]
+[ext_resource type="Texture2D" uid="uid://dexuw67anlth" path="res://cards/c05.jpg" id="7_36i48"]
+[ext_resource type="Texture2D" uid="uid://bmhhhb61fw3a1" path="res://cards/c06.jpg" id="8_0phws"]
+[ext_resource type="Texture2D" uid="uid://dweu1dvhk2ip8" path="res://cards/c07.jpg" id="9_yhs60"]
+[ext_resource type="Texture2D" uid="uid://c5mwlnbpri6p3" path="res://cards/c08.jpg" id="10_salog"]
+[ext_resource type="Texture2D" uid="uid://de3v4o3l80lwn" path="res://cards/c09.jpg" id="11_mn0tj"]
+[ext_resource type="Texture2D" uid="uid://duyab5fqqdp6c" path="res://cards/c10.jpg" id="12_bn7g4"]
+[ext_resource type="Texture2D" uid="uid://02ug124f42p7" path="res://cards/c11.jpg" id="13_glr6n"]
+[ext_resource type="Texture2D" uid="uid://b8vjxgyev3vng" path="res://cards/c12.jpg" id="14_rveve"]
+[ext_resource type="Texture2D" uid="uid://q1u8p6486ec3" path="res://cards/c13.jpg" id="15_qfq8y"]
+[ext_resource type="Texture2D" uid="uid://bwrnats8ewcpx" path="res://cards/c14.jpg" id="16_j6ovt"]
+
+[node name="Swords_view" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1263.0
+offset_bottom = 933.0
+script = ExtResource("2_v4rwn")
+Images = Array[Texture]([ExtResource("3_wo3t4"), ExtResource("4_c3gp4"), ExtResource("5_c7hyw"), ExtResource("6_citsx"), ExtResource("7_36i48"), ExtResource("8_0phws"), ExtResource("9_yhs60"), ExtResource("10_salog"), ExtResource("11_mn0tj"), ExtResource("12_bn7g4"), ExtResource("13_glr6n"), ExtResource("14_rveve"), ExtResource("15_qfq8y"), ExtResource("16_j6ovt")])
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+texture = ExtResource("1_g3lu5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 70.0
+offset_right = 1092.0
+offset_bottom = 838.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+columns = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 499.0
+offset_top = 427.0
+offset_right = 652.0
+offset_bottom = 481.0
+text = "RETURN 
+TO ENCYCLOPEDIA"
+
+[connection signal="pressed" from="Button" to="." method="_on_return_button_pressed"]
