@@ -1,18 +1,22 @@
 extends Control
 class_name Card
-@onready var card_area = get_parent().get_child(0).get_child(0)
+@onready var card_area = get_parent().get_node("BG/Area2D/CollisionShape2D")
 var selected = false
 var card_id = {}
 var flipped = false
-var area_bounds : Rect2
+var qlabel : Label
+
 
 
 func _ready():
-	
+
+
 
 	draw_card()
 	
-# Signal handler for mouse entered
+	
+
+	# Signal handler for mouse entered
 func _on_mouse_entered():
 	if not self in CardManager.mouseover:
 		CardManager.mouseover[self]=self
@@ -21,13 +25,17 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if self in CardManager.mouseover:
 		CardManager.mouseover.erase(self)
+	if qlabel:
+		qlabel.visible = false
 
 
 func _physics_process(delta):
 	if selected:
-
-		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
-	
+		var target_pos = get_global_mouse_position()
+		var total =(get_viewport_rect().size.x - card_area.shape.extents.x*2)		
+		target_pos.x = clamp(target_pos.x, card_area.shape.extents.x/4, card_area.shape.size.x)
+		target_pos.y = clamp(target_pos.y, (card_area.shape.extents.y), card_area.shape.size.y)
+		global_position = lerp(global_position, target_pos, 25 * delta)
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -38,8 +46,22 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 							make_topmost()
 							selected = true
 			else:
-				#display related questions
-				pass
+				if not qlabel:
+					qlabel = Label.new()
+					
+					qlabel.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+					qlabel.size = card_area.shape.size/6
+					var new_sb = StyleBoxFlat.new()
+					new_sb.bg_color = Color8(0,0,0,200)
+					for i in card_id["Questions to Ask"]:
+						
+						qlabel.text += i + "    "
+						qlabel.add_theme_stylebox_override("normal", new_sb)
+					add_child(qlabel)
+					qlabel.rotation = rotation
+			
+				else:
+					qlabel.visible = true
 		elif event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			selected = false
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -122,7 +144,7 @@ func draw_card():
 	add_child(sprite)
 	CardManager.drawn_cards +=1
 	self.z_index = CardManager.drawn_cards
-	area_bounds = card_area.get_child(0).shape.get_rect()
+	
 	
 	
 
